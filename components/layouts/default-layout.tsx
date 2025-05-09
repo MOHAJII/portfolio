@@ -46,7 +46,7 @@ export function DefaultLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col relative bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-900">
-      <header className={`sticky top-0 z-30 transition-all duration-300 h-16 ${isScrolled ? 'bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm' : 'bg-transparent'}`}>
+      <header className={`sticky top-0 z-30 transition-all duration-300 md:px-20 h-16 ${isScrolled ? 'bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm' : 'bg-transparent'}`}>
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-16">
             <Link href="#" className="font-bold text-xl flex items-center gap-2">
@@ -162,7 +162,7 @@ export function DefaultLayout({ children }: { children: React.ReactNode }) {
         </a>
       </div>
 
-      <footer className="border-t py-6 bg-muted/30 dark:bg-gray-900/90 dark:border-gray-800">
+      <footer className="border-t py-6 px-8 bg-muted/30 dark:bg-gray-900/90">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center mb-4 md:mb-0">

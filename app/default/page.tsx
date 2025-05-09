@@ -84,8 +84,34 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="about" className="min-h-screen flex items-center py-16">
-        <div className="container">
+      <section id="about" className="min-h-screen flex items-center py-16 relative">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 100% 100%, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 0 100%, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 100% 0, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 0 0, var(--primary) 0, var(--primary) 3px, transparent 3px)
+            `,
+            backgroundSize: '40px 40px',
+            backgroundPosition: 'top left',
+            opacity: '0.1'
+          }}></div>
+          <div className="absolute right-0 top-1/4 w-96 h-96" style={{
+            background: 'radial-gradient(circle at center, var(--primary) 0%, transparent 70%)',
+            opacity: '0.05',
+            filter: 'blur(60px)',
+            transform: 'translate(20%, -20%)'
+          }}></div>
+          <div className="absolute left-0 bottom-1/4 w-96 h-96" style={{
+            background: 'radial-gradient(circle at center, var(--primary) 0%, transparent 70%)',
+            opacity: '0.05',
+            filter: 'blur(60px)',
+            transform: 'translate(-20%, 20%)'
+          }}></div>
+        </div>
+        <div className="container relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">About Me</h2>
             <Separator className="w-20 my-4" />
@@ -136,8 +162,27 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="projects" className="min-h-screen flex items-center py-16 bg-muted/30">
-        <div className="container">
+      <section id="projects" className="min-h-screen flex items-center py-16 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-background">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(var(--primary) 1.5px, transparent 1.5px), linear-gradient(to right, var(--primary) 1.5px, transparent 1.5px)`,
+            backgroundSize: '40px 40px',
+            opacity: '0.1'
+          }}></div>
+          <div className="absolute inset-0" style={{
+            background: `radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 25%)`,
+            opacity: '0.05',
+            filter: 'blur(40px)',
+            transform: 'translateY(-30%) scale(2)'
+          }}></div>
+          <div className="absolute inset-0" style={{
+            background: `radial-gradient(circle at 80% 80%, var(--primary) 0%, transparent 25%)`,
+            opacity: '0.05',
+            filter: 'blur(40px)',
+            transform: 'scale(2)'
+          }}></div>
+        </div>
+        <div className="container relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">My Projects</h2>
             <Separator className="w-20 my-4" />
@@ -175,8 +220,19 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="resume" className="min-h-screen flex items-center py-16">
-        <div className="container">
+      <section id="resume" className="min-h-screen flex items-center py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-tl from-background via-primary/5 to-background">
+          <div className="absolute inset-0 opacity-30" style={{
+            backgroundImage: `linear-gradient(30deg, var(--primary) 12%, transparent 12.5%, transparent 87%, var(--primary) 87.5%, var(--primary)), 
+                             linear-gradient(150deg, var(--primary) 12%, transparent 12.5%, transparent 87%, var(--primary) 87.5%, var(--primary)), 
+                             linear-gradient(30deg, var(--primary) 12%, transparent 12.5%, transparent 87%, var(--primary) 87.5%, var(--primary)), 
+                             linear-gradient(150deg, var(--primary) 12%, transparent 12.5%, transparent 87%, var(--primary) 87.5%, var(--primary))`,
+            backgroundSize: '80px 140px',
+            backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px',
+            backgroundColor: 'transparent'
+          }}></div>
+        </div>
+        <div className="container relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">Resume</h2>
             <Separator className="w-20 my-4" />
@@ -254,8 +310,14 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="contact" className="min-h-screen flex items-center py-16 bg-primary/5">
-        <div className="container">
+      <section id="contact" className="min-h-screen flex items-center py-16 px-8 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10">
+          <div className="absolute inset-0" style={{ 
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.1) 1px, transparent 0)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
+        <div className="container relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">Get In Touch</h2>
             <Separator className="w-20 my-4" />

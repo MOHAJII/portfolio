@@ -32,38 +32,38 @@ export function ProfessionSwitcher() {
   };
 
   return (
-    <div className="fixed bottom-20! right-4 z-50">
+    <div className="fixed bottom-20 right-4 z-50">
       <div className="relative">
         <Button 
           variant="outline" 
           size="sm" 
-          className="rounded-full bg-background/80 backdrop-blur-sm border shadow-md" 
+          className="rounded-full bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white border-none hover:opacity-90 hover:scale-[0.98] transition-all duration-200 shadow-md text-sm sm:text-base md:text-lg sm:px-6 md:px-8 sm:py-6" 
           onClick={() => setIsOpen(!isOpen)}
         >
-          <span className="flex items-center gap-2">
-            {getCurrentIcon()}
-            <span className="hidden sm:inline">Switch View</span>
+          <span className="flex items-center gap-2 sm:gap-3">
+            <span className="sm:scale-125 md:scale-150">{getCurrentIcon()}</span>
+            <span className="hidden sm:inline font-medium">Switch View</span>
           </span>
-          {isOpen ? <ChevronDown className="ml-2 h-4 w-4" /> : <ChevronUp className="ml-2 h-4 w-4" />}
+          {isOpen ? <ChevronUp className="ml-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" /> : <ChevronDown className="ml-2 h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />}
         </Button>
 
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="absolute top-full right-0 mt-2 w-48 bg-background rounded-lg shadow-lg border p-1"
+              exit={{ opacity: 0, y: 10 }}
+              className="absolute bottom-full right-0 mb-2 w-48 sm:w-56 md:w-64 bg-background rounded-lg shadow-lg border p-1"
             >
               {professions.map((item) => (
                 <Button
                   key={item.id}
                   variant={profession === item.id ? "secondary" : "ghost"}
-                  className="w-full justify-start mb-1"
+                  className="w-full justify-start mb-1 sm:text-base md:text-lg sm:py-3"
                   onClick={() => handleSelect(item.id)}
                 >
-                  <span className="flex items-center gap-2">
-                    {item.icon}
+                  <span className="flex items-center gap-2 sm:gap-3">
+                    <span className="sm:scale-125 md:scale-150">{item.icon}</span>
                     {item.name}
                   </span>
                 </Button>
