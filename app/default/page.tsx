@@ -7,7 +7,10 @@ import { ResumeSection } from "@/components/shared/resume-section";
 import { ContactSection } from "@/components/shared/contact-section";
 import { Separator } from "@/components/ui/separator";
 import { Project } from "@/lib/types";
+import { PROJECTS } from "@/lib/constants";
 import { Metadata } from "next";
+import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback } from 'react';
 
 export const metadata: Metadata = {
   title: "Mohammed HAJI - Developer Portfolio",
@@ -15,33 +18,52 @@ export const metadata: Metadata = {
 };
 
 export default function DefaultPage() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    align: 'start',
+    slidesToScroll: 1,
+    breakpoints: {
+      '(min-width: 768px)': { slidesToScroll: 2 },
+      '(min-width: 1024px)': { slidesToScroll: 3 }
+    }
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   const renderProject = (project: Project) => (
-    <div key={project.id} className="group bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md transition-all">
-      <div className="aspect-video overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-      </div>
-      <div className="p-5">
-        <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
-        <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span key={tag} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded">
-              {tag}
-            </span>
-          ))}
+    <div key={project.id} className="flex-[0_0_100%] min-w-0 pl-4 md:flex-[0_0_50%] lg:flex-[0_0_33.333%]">
+      <div className="group bg-card rounded-xl overflow-hidden border shadow-sm hover:shadow-md transition-all h-full">
+        <div className="aspect-video overflow-hidden rounded-t-lg">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
         </div>
-        <div className="mt-4 pt-4 border-t flex justify-between items-center">
-          <a 
-            href={project.link} 
-            className="text-primary hover:underline text-sm font-medium"
-          >
-            View Project
-          </a>
-          <span className="text-xs text-muted-foreground">2023</span>
+        <div className="p-5">
+          <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
+          <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <span key={tag} className="bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div className="mt-4 pt-4 border-t flex justify-between items-center">
+            <a 
+              href={project.link} 
+              className="text-primary hover:underline text-sm font-medium bg-primary/5 px-4 py-2 rounded-full transition-colors hover:bg-primary/10"
+            >
+              View Project
+            </a>
+            <span className="text-xs text-muted-foreground bg-muted px-3 py-1.5 rounded-full">2023</span>
+          </div>
         </div>
       </div>
     </div>
@@ -49,8 +71,8 @@ export default function DefaultPage() {
 
   return (
     <DefaultLayout>
-      <section id="hero" className="min-h-screen flex items-center py-16 bg-gradient-to-b from-primary/5 to-background">
-        <div className="container">
+      <section id="hero" className="min-h-[90vh] flex items-center py-16 bg-gradient-to-b from-primary/5 to-background">
+        <div className="container max-w-7xl mx-auto ">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
               <HeroSection 
@@ -84,7 +106,7 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="about" className="min-h-screen flex items-center py-16 relative">
+      <section id="about" className="min-h-[90vh] flex items-center py-16 relative">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
           <div className="absolute inset-0" style={{
@@ -111,7 +133,7 @@ export default function DefaultPage() {
             transform: 'translate(-20%, 20%)'
           }}></div>
         </div>
-        <div className="container relative z-10">
+        <div className="container max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">About Me</h2>
             <Separator className="w-20 my-4" />
@@ -162,27 +184,34 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="projects" className="min-h-screen flex items-center py-16 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-background">
+      <section id="projects" className="min-h-[90vh] flex items-center py-16 relative">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
           <div className="absolute inset-0" style={{
-            backgroundImage: `linear-gradient(var(--primary) 1.5px, transparent 1.5px), linear-gradient(to right, var(--primary) 1.5px, transparent 1.5px)`,
+            backgroundImage: `
+              radial-gradient(circle at 100% 100%, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 0 100%, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 100% 0, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 0 0, var(--primary) 0, var(--primary) 3px, transparent 3px)
+            `,
             backgroundSize: '40px 40px',
+            backgroundPosition: 'top left',
             opacity: '0.1'
           }}></div>
-          <div className="absolute inset-0" style={{
-            background: `radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 25%)`,
+          <div className="absolute right-0 top-1/4 w-96 h-96" style={{
+            background: 'radial-gradient(circle at center, var(--primary) 0%, transparent 70%)',
             opacity: '0.05',
-            filter: 'blur(40px)',
-            transform: 'translateY(-30%) scale(2)'
+            filter: 'blur(60px)',
+            transform: 'translate(20%, -20%)'
           }}></div>
-          <div className="absolute inset-0" style={{
-            background: `radial-gradient(circle at 80% 80%, var(--primary) 0%, transparent 25%)`,
+          <div className="absolute left-0 bottom-1/4 w-96 h-96" style={{
+            background: 'radial-gradient(circle at center, var(--primary) 0%, transparent 70%)',
             opacity: '0.05',
-            filter: 'blur(40px)',
-            transform: 'scale(2)'
+            filter: 'blur(60px)',
+            transform: 'translate(-20%, 20%)'
           }}></div>
         </div>
-        <div className="container relative z-10">
+        <div className="container max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">My Projects</h2>
             <Separator className="w-20 my-4" />
@@ -191,48 +220,64 @@ export default function DefaultPage() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {renderProject({ 
-              id: 1, 
-              title: 'E-commerce Platform', 
-              description: 'A full-stack e-commerce solution with secure payment processing and inventory management.',
-              image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
-              tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-              link: '#'
-            })}
-            {renderProject({ 
-              id: 2, 
-              title: 'Healthcare Dashboard', 
-              description: 'Interactive dashboard for healthcare professionals to monitor patient data and metrics.',
-              image: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
-              tags: ['React', 'TypeScript', 'Chart.js', 'Firebase'],
-              link: '#'
-            })}
-            {renderProject({ 
-              id: 3, 
-              title: 'Real Estate Finder', 
-              description: 'Property search application with map integration and virtual viewing capabilities.',
-              image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
-              tags: ['Vue.js', 'Express', 'PostgreSQL', 'Google Maps API'],
-              link: '#'
-            })}
+          <div className="relative">
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {PROJECTS.map((project) => renderProject(project))}
+              </div>
+            </div>
+            
+            <button
+              onClick={scrollPrev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-colors z-10"
+              aria-label="Previous slide"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+            </button>
+            
+            <button
+              onClick={scrollNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-colors z-10"
+              aria-label="Next slide"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </button>
           </div>
         </div>
       </section>
 
-      <section id="resume" className="min-h-screen flex items-center py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-tl from-background via-primary/5 to-background">
-          <div className="absolute inset-0 opacity-30" style={{
-            backgroundImage: `linear-gradient(30deg, var(--primary) 12%, transparent 12.5%, transparent 87%, var(--primary) 87.5%, var(--primary)), 
-                             linear-gradient(150deg, var(--primary) 12%, transparent 12.5%, transparent 87%, var(--primary) 87.5%, var(--primary)), 
-                             linear-gradient(30deg, var(--primary) 12%, transparent 12.5%, transparent 87%, var(--primary) 87.5%, var(--primary)), 
-                             linear-gradient(150deg, var(--primary) 12%, transparent 12.5%, transparent 87%, var(--primary) 87.5%, var(--primary))`,
-            backgroundSize: '80px 140px',
-            backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px',
-            backgroundColor: 'transparent'
+      <section id="resume" className="min-h-[90vh] flex items-center py-16 relative overflow-hidden">
+      <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 100% 100%, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 0 100%, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 100% 0, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 0 0, var(--primary) 0, var(--primary) 3px, transparent 3px)
+            `,
+            backgroundSize: '40px 40px',
+            backgroundPosition: 'top left',
+            opacity: '0.1'
+          }}></div>
+          <div className="absolute right-0 top-1/4 w-96 h-96" style={{
+            background: 'radial-gradient(circle at center, var(--primary) 0%, transparent 70%)',
+            opacity: '0.05',
+            filter: 'blur(60px)',
+            transform: 'translate(20%, -20%)'
+          }}></div>
+          <div className="absolute left-0 bottom-1/4 w-96 h-96" style={{
+            background: 'radial-gradient(circle at center, var(--primary) 0%, transparent 70%)',
+            opacity: '0.05',
+            filter: 'blur(60px)',
+            transform: 'translate(-20%, 20%)'
           }}></div>
         </div>
-        <div className="container relative z-10">
+        <div className="container max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">Resume</h2>
             <Separator className="w-20 my-4" />
@@ -310,14 +355,14 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="contact" className="min-h-screen flex items-center py-16 px-8 relative">
+      <section id="contact" className="min-h-[90vh] flex items-center py-16 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10">
           <div className="absolute inset-0" style={{ 
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.1) 1px, transparent 0)`,
             backgroundSize: '40px 40px'
           }}></div>
         </div>
-        <div className="container relative z-10">
+        <div className="container max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">Get In Touch</h2>
             <Separator className="w-20 my-4" />
