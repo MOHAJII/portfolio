@@ -22,7 +22,7 @@ export function EcommerceLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-background text-foreground min-h-screen flex flex-col">
       <header className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex items-center justify-between h-16 px-4">
+        <div className="container flex items-center justify-between h-16">
           <div className="flex items-center">
             <Button 
               variant="ghost" 

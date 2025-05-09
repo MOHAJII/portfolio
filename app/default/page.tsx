@@ -8,10 +8,9 @@ import { ContactSection } from "@/components/shared/contact-section";
 import { Separator } from "@/components/ui/separator";
 import { Project } from "@/lib/types";
 import { Metadata } from "next";
-import { PROJECTS } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Mohammed HAJI - Default Portfolio",
+  title: "Mohammed HAJI - Developer Portfolio",
   description: "Software Engineer portfolio showcasing projects and skills",
 };
 
@@ -42,7 +41,7 @@ export default function DefaultPage() {
           >
             View Project
           </a>
-          <span className="text-xs text-muted-foreground">{project.year}</span>
+          <span className="text-xs text-muted-foreground">2023</span>
         </div>
       </div>
     </div>
@@ -50,12 +49,12 @@ export default function DefaultPage() {
 
   return (
     <DefaultLayout>
-      <section id="hero" className="min-h-[90vh] flex items-center py-16 bg-gradient-to-b from-primary/5 to-background">
+      <section id="hero" className="min-h-screen flex items-center py-16 bg-gradient-to-b from-primary/5 to-background">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
               <HeroSection 
-                titleClassName="text-4xl md:text-6xl font-bold" 
+                titleClassName="text-3xl md:text-5xl font-bold" 
                 subtitleClassName="text-xl md:text-3xl font-medium mt-3 text-primary"
                 descriptionClassName="mt-4 text-muted-foreground max-w-md text-lg"
               />
@@ -85,7 +84,7 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="about" className="py-16">
+      <section id="about" className="min-h-screen flex items-center py-16">
         <div className="container">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">About Me</h2>
@@ -137,7 +136,7 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="projects" className="py-16 bg-muted/30">
+      <section id="projects" className="min-h-screen flex items-center py-16 bg-muted/30">
         <div className="container">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">My Projects</h2>
@@ -148,12 +147,35 @@ export default function DefaultPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.map((project) => (renderProject(project)))}
+            {renderProject({ 
+              id: 1, 
+              title: 'E-commerce Platform', 
+              description: 'A full-stack e-commerce solution with secure payment processing and inventory management.',
+              image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+              tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+              link: '#'
+            })}
+            {renderProject({ 
+              id: 2, 
+              title: 'Healthcare Dashboard', 
+              description: 'Interactive dashboard for healthcare professionals to monitor patient data and metrics.',
+              image: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+              tags: ['React', 'TypeScript', 'Chart.js', 'Firebase'],
+              link: '#'
+            })}
+            {renderProject({ 
+              id: 3, 
+              title: 'Real Estate Finder', 
+              description: 'Property search application with map integration and virtual viewing capabilities.',
+              image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+              tags: ['Vue.js', 'Express', 'PostgreSQL', 'Google Maps API'],
+              link: '#'
+            })}
           </div>
         </div>
       </section>
 
-      <section id="resume" className="py-16">
+      <section id="resume" className="min-h-screen flex items-center py-16">
         <div className="container">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">Resume</h2>
@@ -232,7 +254,7 @@ export default function DefaultPage() {
         </div>
       </section>
 
-      <section id="contact" className="py-16 bg-primary/5 px-10">
+      <section id="contact" className="min-h-screen flex items-center py-16 bg-primary/5">
         <div className="container">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">Get In Touch</h2>
@@ -298,7 +320,19 @@ export default function DefaultPage() {
                   </a>
                   <a href="#" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                    </svg>
+                  </a>
+                  <a href="#" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                  <a href="#" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                   </a>
                 </div>

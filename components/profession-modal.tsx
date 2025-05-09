@@ -38,7 +38,7 @@ export function ProfessionModal() {
     { name: 'real-estate', title: 'Real Estate', icon: <Building2 className="h-6 w-6" />, description: 'Portfolio as property listings' },
     { name: 'healthcare', title: 'Healthcare', icon: <Stethoscope className="h-6 w-6" />, description: 'Portfolio as medical services' },
     { name: 'education', title: 'Education', icon: <GraduationCap className="h-6 w-6" />, description: 'Portfolio as learning modules' },
-    { name: 'default', title: 'Default', icon: <Code className="h-6 w-6" />, description: 'Standard developer portfolio' },
+    { name: 'default', title: 'Developer', icon: <Code className="h-6 w-6" />, description: 'Standard developer portfolio' },
   ];
 
   return (

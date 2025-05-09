@@ -8,7 +8,6 @@ import { Project } from "@/lib/types";
 import { BookOpen, Clock, Star, Users, BadgeCheck } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Metadata } from "next";
-import { PROJECTS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Mohammed HAJI - Education Portfolio",
@@ -49,9 +48,9 @@ export default function EducationPage() {
             <span>Course progress</span>
             <span className="font-medium">85%</span>
           </div>
-          <Progress value={85} className="h-2 bg-primary/20" />
+          <Progress value={85} className="h-2 bg-primary/20" indicatorClassName="bg-primary" />
         </div>
-  
+        
         <div className="flex justify-between items-center text-sm">
           <div className="flex items-center">
             <Users className="h-4 w-4 mr-1 text-muted-foreground" />
@@ -182,7 +181,30 @@ export default function EducationPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.map((project) => (renderProject(project)))}
+            {renderProject({ 
+              id: 1, 
+              title: 'E-commerce Platform', 
+              description: 'A full-stack e-commerce solution with secure payment processing and inventory management.',
+              image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+              tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+              link: '#'
+            })}
+            {renderProject({ 
+              id: 2, 
+              title: 'Healthcare Dashboard', 
+              description: 'Interactive dashboard for healthcare professionals to monitor patient data and metrics.',
+              image: 'https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+              tags: ['React', 'TypeScript', 'Chart.js', 'Firebase'],
+              link: '#'
+            })}
+            {renderProject({ 
+              id: 3, 
+              title: 'Real Estate Finder', 
+              description: 'Property search application with map integration and virtual viewing capabilities.',
+              image: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
+              tags: ['Vue.js', 'Express', 'PostgreSQL', 'Google Maps API'],
+              link: '#'
+            })}
           </div>
           
           <div className="mt-12 text-center">

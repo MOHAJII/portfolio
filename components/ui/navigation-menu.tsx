@@ -77,31 +77,7 @@ const NavigationMenuContent = React.forwardRef<
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
 
-const NavigationMenuLink = React.forwardRef<
-  React.ElementRef<typeof NavigationMenuPrimitive.Link>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link>
->(({ className, href, ...props }, ref) => {
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (href && href.startsWith('#')) {
-      event.preventDefault();
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
-  return (
-    <NavigationMenuPrimitive.Link
-      ref={ref}
-      href={href}
-      onClick={handleClick}
-      className={cn(className)}
-      {...props}
-    />
-  );
-});
-NavigationMenuLink.displayName = NavigationMenuPrimitive.Link.displayName;
+const NavigationMenuLink = NavigationMenuPrimitive.Link;
 
 const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,

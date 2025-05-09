@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Providers>
           <div className="w-full px-4 md:px-6 lg:px-8">
-            <ProfessionSwitcher className="fixed bottom-4 right-4 z-50" />
+            <ProfessionSwitcher className="fixed bottom-20 right-4 z-50" />
             <main className="w-full max-w-7xl mx-auto">
               {children}
             </main>

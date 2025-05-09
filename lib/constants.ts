@@ -33,14 +33,6 @@ export const PROJECTS: Project[] = [
     tags: ['React', 'Django', 'AWS', 'WebRTC'],
     link: '#',
   },
-  {
-    id: 5,
-    title: 'Learning Management System',
-    description: 'Comprehensive LMS for educational institutions with course creation and student tracking.',
-    image: 'https://images.pexels.com/photos/5428003/pexels-photo-5428003.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750',
-    tags: ['React', 'Django', 'AWS', 'WebRTC'],
-    link: '#',
-  },
 ];
 
 export const EXPERIENCES: Experience[] = [

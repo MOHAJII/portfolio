@@ -10,7 +10,7 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({
-  className = "mx-10",
+  className = "mx-5",
   buttonClassName = "",
   titleClassName = "text-3xl md:text-5xl font-bold",
   subtitleClassName = "text-xl md:text-2xl font-semibold mt-2",

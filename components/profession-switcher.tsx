@@ -6,9 +6,8 @@ import { useProfession } from '@/hooks/use-profession';
 import { useRouter } from 'next/navigation';
 import { ChevronUp, ChevronDown, Briefcase, Building2, Stethoscope, GraduationCap, Code } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import clsx from 'clsx';
 
-export function ProfessionSwitcher({ className }: { className?: string }) {
+export function ProfessionSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const { profession, setProfession } = useProfession();
   const router = useRouter();
@@ -18,7 +17,7 @@ export function ProfessionSwitcher({ className }: { className?: string }) {
     { id: 'real-estate', name: 'Real Estate', icon: <Building2 className="h-4 w-4" /> },
     { id: 'healthcare', name: 'Healthcare', icon: <Stethoscope className="h-4 w-4" /> },
     { id: 'education', name: 'Education', icon: <GraduationCap className="h-4 w-4" /> },
-    { id: 'default', name: 'Default', icon: <Code className="h-4 w-4" /> },
+    { id: 'default', name: 'Developer', icon: <Code className="h-4 w-4" /> },
   ];
 
   const handleSelect = (id: string) => {
@@ -33,7 +32,7 @@ export function ProfessionSwitcher({ className }: { className?: string }) {
   };
 
   return (
-    <div className={clsx("fixed bottom-4 right-4 z-50", className)}>
+    <div className="fixed bottom-20! right-4 z-50">
       <div className="relative">
         <Button 
           variant="outline" 
@@ -51,10 +50,10 @@ export function ProfessionSwitcher({ className }: { className?: string }) {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              className="absolute bottom-full right-0 mb-2 w-48 bg-background rounded-lg shadow-lg border p-1"
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute top-full right-0 mt-2 w-48 bg-background rounded-lg shadow-lg border p-1"
             >
               {professions.map((item) => (
                 <Button
