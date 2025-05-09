@@ -12,7 +12,7 @@ interface ResumeSectionProps {
 }
 
 export function ResumeSection({
-  className = "",
+  className = "mx-5",
   titleClassName = "text-2xl font-bold",
   experienceClassName = "mt-6",
   experienceItemClassName = "mb-6",

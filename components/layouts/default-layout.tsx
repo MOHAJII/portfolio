@@ -16,7 +16,7 @@ export function DefaultLayout({ children }: { children: React.ReactNode }) {
   const navItems = [
     { label: "Home", href: "#hero", icon: <Home className="h-4 w-4 mr-2" /> },
     { label: "About", href: "#about", icon: <User className="h-4 w-4 mr-2" /> },
-    { label: "Projects", href: "#projects", icon: <Briefcase className="h-4 w-4 mr-2" /> },
+    { label: "Work", href: "#projects", icon: <Briefcase className="h-4 w-4 mr-2" /> },
     { label: "Resume", href: "#resume", icon: <FileText className="h-4 w-4 mr-2" /> },
     { label: "Contact", href: "#contact", icon: <Send className="h-4 w-4 mr-2" /> },
   ];
@@ -45,9 +45,9 @@ export function DefaultLayout({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col relative bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-900">
-      <header className={`sticky top-0 z-30 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm' : 'bg-transparent'}`}>
-        <div className="container max-w-7xl mx-auto">
+    <div className="min-h-screen flex flex-col relative bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-gray-900 overflow-x-hidden">
+      <header className={`fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl z-30 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm' : 'bg-transparent'}`} style={{right: 'auto'}}>
+        <div className="mx-auto w-full px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="#" className="font-bold text-xl flex items-center gap-2">
               <Code className="h-6 w-6 text-primary" />
@@ -123,12 +123,12 @@ export function DefaultLayout({ children }: { children: React.ReactNode }) {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background z-20 border-b"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 bg-background/95 md:hidden border-b flex items-start justify-center"
           >
-            <nav className="container py-4 flex flex-col space-y-1">
+            <nav className="w-full max-w-7xl mx-auto py-4 flex flex-col space-y-1 px-4">
               {navItems.map((item) => (
                 <Link 
                   key={item.label} 
@@ -150,17 +150,6 @@ export function DefaultLayout({ children }: { children: React.ReactNode }) {
       </AnimatePresence>
 
       <main className="flex-1 [&>section]:min-h-[calc(100vh-4rem)] [&>section]:flex [&>section]:items-center">{children}</main>
-
-      <div className="fixed bottom-6 right-6 z-40">
-        <a 
-          href="#hero" 
-          className={`flex items-center justify-center w-10 h-10 bg-primary text-primary-foreground rounded-full shadow-lg transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-          </svg>
-        </a>
-      </div>
 
       <footer className="border-t py-6 bg-muted/30 dark:bg-gray-900/90">
         <div className="container max-w-7xl mx-auto">

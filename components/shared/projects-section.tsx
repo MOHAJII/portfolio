@@ -58,7 +58,7 @@ export function ProjectsSection({
 }: ProjectsSectionProps) {
   return (
     <section id="projects" className={className}>
-      <h2 className={titleClassName}>Projects</h2>
+      <h2 className={titleClassName}>Latest works</h2>
       <Separator className={separatorClassName} />
       <div className={gridClassName}>
         {PROJECTS.map((project) =>

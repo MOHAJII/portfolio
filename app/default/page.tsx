@@ -9,8 +9,6 @@ import { Separator } from "@/components/ui/separator";
 import { Project } from "@/lib/types";
 import { PROJECTS } from "@/lib/constants";
 import { Metadata } from "next";
-import useEmblaCarousel from 'embla-carousel-react';
-import { useCallback } from 'react';
 
 export const metadata: Metadata = {
   title: "Mohammed HAJI - Developer Portfolio",
@@ -18,52 +16,33 @@ export const metadata: Metadata = {
 };
 
 export default function DefaultPage() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    align: 'start',
-    slidesToScroll: 1,
-    breakpoints: {
-      '(min-width: 768px)': { slidesToScroll: 2 },
-      '(min-width: 1024px)': { slidesToScroll: 3 }
-    }
-  });
-
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
-
   const renderProject = (project: Project) => (
-    <div key={project.id} className="flex-[0_0_100%] min-w-0 pl-4 md:flex-[0_0_50%] lg:flex-[0_0_33.333%]">
-      <div className="group bg-card rounded-xl overflow-hidden border shadow-sm hover:shadow-md transition-all h-full">
-        <div className="aspect-video overflow-hidden rounded-t-lg">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+    <div key={project.id} className="group bg-card rounded-xl overflow-hidden border shadow-sm hover:shadow-md transition-all">
+      <div className="aspect-video overflow-hidden rounded-t-lg">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+      <div className="p-5">
+        <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
+        <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span key={tag} className="bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
+              {tag}
+            </span>
+          ))}
         </div>
-        <div className="p-5">
-          <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
-          <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span key={tag} className="bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <div className="mt-4 pt-4 border-t flex justify-between items-center">
-            <a 
-              href={project.link} 
-              className="text-primary hover:underline text-sm font-medium bg-primary/5 px-4 py-2 rounded-full transition-colors hover:bg-primary/10"
-            >
-              View Project
-            </a>
-            <span className="text-xs text-muted-foreground bg-muted px-3 py-1.5 rounded-full">2023</span>
-          </div>
+        <div className="mt-4 pt-4 border-t flex justify-between items-center">
+          <a 
+            href={project.link} 
+            className="text-primary hover:underline text-sm font-medium bg-primary/5 px-4 py-2 rounded-full transition-colors hover:bg-primary/10"
+          >
+            View Project
+          </a>
+          <span className="text-xs text-muted-foreground px-3 py-1.5">2023</span>
         </div>
       </div>
     </div>
@@ -213,45 +192,21 @@ export default function DefaultPage() {
         </div>
         <div className="container max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
-            <h2 className="text-3xl font-bold">My Projects</h2>
+            <h2 className="text-3xl font-bold">Latest works</h2>
             <Separator className="w-20 my-4" />
             <p className="text-muted-foreground max-w-2xl">
               Here are some of the projects I've worked on. Each project showcases different skills and technologies.
             </p>
           </div>
           
-          <div className="relative">
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
-                {PROJECTS.map((project) => renderProject(project))}
-              </div>
-            </div>
-            
-            <button
-              onClick={scrollPrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-colors z-10"
-              aria-label="Previous slide"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m15 18-6-6 6-6"/>
-              </svg>
-            </button>
-            
-            <button
-              onClick={scrollNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm border rounded-full p-3 hover:bg-background transition-colors z-10"
-              aria-label="Next slide"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m9 18 6-6-6-6"/>
-              </svg>
-            </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {PROJECTS.map((project) => renderProject(project))}
           </div>
         </div>
       </section>
 
       <section id="resume" className="min-h-[90vh] flex items-center py-16 relative overflow-hidden">
-      <div className="absolute inset-0">
+        <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
           <div className="absolute inset-0" style={{
             backgroundImage: `
@@ -277,7 +232,7 @@ export default function DefaultPage() {
             transform: 'translate(-20%, 20%)'
           }}></div>
         </div>
-        <div className="container max-w-7xl mx-auto relative z-10">
+        <div className="container max-w-7xl mx-auto relative z-10 px-5">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">Resume</h2>
             <Separator className="w-20 my-4" />
@@ -356,10 +311,30 @@ export default function DefaultPage() {
       </section>
 
       <section id="contact" className="min-h-[90vh] flex items-center py-16 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10">
-          <div className="absolute inset-0" style={{ 
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.1) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
+      <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 100% 100%, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 0 100%, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 100% 0, var(--primary) 0, var(--primary) 3px, transparent 3px),
+              radial-gradient(circle at 0 0, var(--primary) 0, var(--primary) 3px, transparent 3px)
+            `,
+            backgroundSize: '40px 40px',
+            backgroundPosition: 'top left',
+            opacity: '0.1'
+          }}></div>
+          <div className="absolute right-0 top-1/4 w-96 h-96" style={{
+            background: 'radial-gradient(circle at center, var(--primary) 0%, transparent 70%)',
+            opacity: '0.05',
+            filter: 'blur(60px)',
+            transform: 'translate(20%, -20%)'
+          }}></div>
+          <div className="absolute left-0 bottom-1/4 w-96 h-96" style={{
+            background: 'radial-gradient(circle at center, var(--primary) 0%, transparent 70%)',
+            opacity: '0.05',
+            filter: 'blur(60px)',
+            transform: 'translate(-20%, 20%)'
           }}></div>
         </div>
         <div className="container max-w-7xl mx-auto relative z-10">
