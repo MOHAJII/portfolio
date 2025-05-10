@@ -1,5 +1,6 @@
 import { ProfessionModal } from '@/components/profession-modal';
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Home() {
   return (

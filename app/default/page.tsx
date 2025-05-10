@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function DefaultPage() {
   const renderProject = (project: Project) => (
-    <div key={project.id} className="group bg-card rounded-xl overflow-hidden border shadow-sm hover:shadow-md transition-all">
+    <div key={project.id} className="group bg-card rounded-xl overflow-hidden border shadow-sm hover:shadow-md transition-all flex flex-col h-full">
       <div className="aspect-video overflow-hidden rounded-t-lg">
         <img
           src={project.image}
@@ -25,17 +25,17 @@ export default function DefaultPage() {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </div>
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-1">
         <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
         <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag) => (
             <span key={tag} className="bg-primary/10 text-primary text-xs px-3 py-1.5 rounded-full">
               {tag}
             </span>
           ))}
         </div>
-        <div className="mt-4 pt-4 border-t flex justify-between items-center">
+        <div className="mt-auto pt-4 border-t flex justify-between items-center">
           <a 
             href={project.link} 
             className="text-primary hover:underline text-sm font-medium bg-primary/5 px-4 py-2 rounded-full transition-colors hover:bg-primary/10"
@@ -112,6 +112,7 @@ export default function DefaultPage() {
             transform: 'translate(-20%, 20%)'
           }}></div>
         </div>
+        
         <div className="container max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col items-center mb-10 text-center">
             <h2 className="text-3xl font-bold">About Me</h2>
@@ -137,25 +138,10 @@ export default function DefaultPage() {
                 textClassName="space-y-4"
               />
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                <div className="flex flex-col items-center justify-center p-4 bg-card rounded-lg border text-center">
-                  <span className="text-3xl font-bold text-primary">5+</span>
-                  <span className="mt-1 text-sm text-muted-foreground">Years Experience</span>
-                </div>
-                
-                <div className="flex flex-col items-center justify-center p-4 bg-card rounded-lg border text-center">
-                  <span className="text-3xl font-bold text-primary">15+</span>
-                  <span className="mt-1 text-sm text-muted-foreground">Completed Projects</span>
-                </div>
-                
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">            
                 <div className="flex flex-col items-center justify-center p-4 bg-card rounded-lg border text-center">
                   <span className="text-3xl font-bold text-primary">10+</span>
-                  <span className="mt-1 text-sm text-muted-foreground">Happy Clients</span>
-                </div>
-                
-                <div className="flex flex-col items-center justify-center p-4 bg-card rounded-lg border text-center">
-                  <span className="text-3xl font-bold text-primary">3+</span>
-                  <span className="mt-1 text-sm text-muted-foreground">Awards Won</span>
+                  <span className="mt-1 text-sm text-muted-foreground">Completed Projects</span>
                 </div>
               </div>
             </div>
@@ -200,7 +186,11 @@ export default function DefaultPage() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.map((project) => renderProject(project))}
+            {PROJECTS.map((project) => (
+              <div className="flex flex-col h-full">
+                {renderProject(project)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -359,7 +349,7 @@ export default function DefaultPage() {
                   </div>
                   <div>
                     <h4 className="font-medium">Phone</h4>
-                    <p className="text-muted-foreground mt-1">+212 600 000 000</p>
+                    <p className="text-muted-foreground mt-1">+212 708321172</p>
                   </div>
                 </div>
                 
@@ -372,7 +362,7 @@ export default function DefaultPage() {
                   </div>
                   <div>
                     <h4 className="font-medium">Email</h4>
-                    <p className="text-muted-foreground mt-1">email@example.com</p>
+                    <p className="text-muted-foreground mt-1">mohammedhaji9991@gmail.com</p>
                   </div>
                 </div>
                 
@@ -393,28 +383,16 @@ export default function DefaultPage() {
               <div className="mt-8 pt-6 border-t">
                 <h3 className="text-xl font-semibold mb-4">Connect With Me</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
+                  <a href="https://www.linkedin.com/in/mohammed-haji9991" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                       <rect x="2" y="9" width="4" height="12"></rect>
                       <circle cx="4" cy="4" r="2"></circle>
                     </svg>
                   </a>
-                  <a href="#" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                    </svg>
-                  </a>
-                  <a href="#" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
+                  <a href="https://github.com/MOHAJII" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                  <a href="#" className="bg-card hover:bg-muted p-3 rounded-full border transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                   </a>
                 </div>
