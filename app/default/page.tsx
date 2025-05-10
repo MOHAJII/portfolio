@@ -42,7 +42,7 @@ export default function DefaultPage() {
           >
             View Project
           </a>
-          <span className="text-xs text-muted-foreground px-3 py-1.5">2023</span>
+          <span className="text-xs text-muted-foreground px-3 py-1.5">{project.year}</span>
         </div>
       </div>
     </div>
@@ -187,7 +187,7 @@ export default function DefaultPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROJECTS.map((project) => (
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full" key={project.id}>
                 {renderProject(project)}
               </div>
             ))}

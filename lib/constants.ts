@@ -7,8 +7,8 @@ export const PROJECTS: Project[] = [
     description: 'A blockchain-powered inventory system built in Java with MongoDB, providing secure and transparent product tracking.',
     image: '/images/block-inventory.png',
     tags: ['Java', 'MongoDB', 'Blockchain', 'Inventory Management'],
-    link: '#',
-    year: '2023',
+    link: 'https://github.com/MOHAJII/Inventory-Management-System-with-Blockchain-Integration',
+    year: '2024',
   },
   {
     id: 11,
